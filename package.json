@@ -1,0 +1,25 @@
+{
+  "name": "node-auth0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ealipio/node-auth0.git"
+  },
+  "keywords": [],
+  "author": "Eisson Alipio <eisson.alipio@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ealipio/node-auth0/issues"
+  },
+  "homepage": "https://github.com/ealipio/node-auth0#readme",
+  "devDependencies": {
+    "express": "^4.16.3",
+    "nodemon": "^1.18.4"
+  }
+}
