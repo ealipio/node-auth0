@@ -5,9 +5,8 @@
   "main": "index.js",
   "scripts": {
     "api": "node ./api.js",
-    "auth": "node ./auth.js",
     "web": "httpster index.html -p 5000",
-    "dev": "concurrently --kill-others \"npm run api\" \"npm run auth\" \"npm run web\""
+    "dev": "concurrently --kill-others \"npm run api\" \"npm run web\""
   },
   "repository": {
     "type": "git",

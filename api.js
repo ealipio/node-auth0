@@ -10,7 +10,9 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const jwtCheck = expressjwt({
-    secret: "mysupersecretkey"
+    secret: 'npjw8Unp68NKK3LFO7H7sCtb1qW67K2Y',
+    audience: 'eisson-demo',
+    issuer: "https://eisson.auth0.com/"
 });
 
 app.get("/resource", (req, res) => {

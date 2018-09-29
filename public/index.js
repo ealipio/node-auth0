@@ -1,10 +1,17 @@
-/* To run this file on a server, we are using httpster. 
-Type `httpster public/index.html -p 5000` in your console to start the server. */
-
 const API_URL = "http://localhost:8888";
-const AUTH_URL = "http://localhost:3000";
 
 let ACCESS_TOKEN = undefined;
+/* To run this file on a server, we are using httpster. 
+Type `httpster index.html -p 5000` in your console to start the server. */
+
+let webAuth = new auth0.WebAuth({
+  domain: 'eisson.auth0.com',
+  clientID: 'M66vAVLbBW0LfvI5CykQP95IdtH5p6f4',
+  responseType: 'token',
+  audience:'eisson-demo',
+  scope: '',
+  redirectUri: window.location.href
+});
 
 const headlineBtn = document.querySelector("#headline");
 const secretBtn = document.querySelector("#secret");
@@ -40,23 +47,18 @@ logoutBtn.addEventListener("click", (event) => {
 });
 
 loginBtn.addEventListener("click", (event) => {
-	fetch(`${AUTH_URL}/login`, {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        "accept": "application/json",
-      },
-      body: JSON.stringify(UIUpdate.getUsernamePassword())
-    }).then(resp => {
-    	UIUpdate.updateCat(resp.status);
-      if (resp.status == 200) {return resp.json();} 
-      else { return resp.text(); }
-	}).then(data => {
-		if (data.access_token) {
-			ACCESS_TOKEN = data.access_token;
-			data = `Access Token: ${data.access_token}`;
-			UIUpdate.loggedIn();
-		}
-		UIUpdate.alertBox(data);
-	});
+	webAuth.authorize();
 });
+
+parseHash = () => {
+
+  webAuth.parseHash(function(err, authResult) {
+    if (authResult && authResult.accessToken) {
+      window.location.hash = '';
+      ACCESS_TOKEN = authResult.accessToken;
+      UIUpdate.loggedIn();
+    }
+  });
+};
+
+window.addEventListener("DOMContentLoaded", parseHash);
