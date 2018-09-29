@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "api": "node ./api.js",
+    "auth": "node ./auth.js",
+    "web": "httpster index.html -p 5000",
+    "dev": "concurrently --kill-others \"npm run api\" \"npm run auth\" \"npm run web\""
   },
   "repository": {
     "type": "git",
@@ -20,9 +22,11 @@
   "homepage": "https://github.com/ealipio/node-auth0#readme",
   "devDependencies": {
     "body-parser": "^1.18.3",
+    "concurrently": "^4.0.1",
     "cors": "^2.8.4",
     "express": "^4.16.3",
     "express-jwt": "^5.3.1",
+    "httpster": "^1.0.4",
     "jsonwebtoken": "^8.3.0",
     "nodemon": "^1.18.4"
   }
