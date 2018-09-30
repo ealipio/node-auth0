@@ -6,6 +6,6 @@
 # clone the repo
 # install dependencies
 npm i
-# start the server
-npm start
+# start the server and apis
+npm run dev
 ```
